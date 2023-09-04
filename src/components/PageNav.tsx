@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import { NavLink } from "react-router-dom";
+import LinkItem from "./inputs/LinkItem";
 
 export default function PageNav() {
   return (
@@ -7,13 +8,19 @@ export default function PageNav() {
       <Logo />
       <ul className="nav-list">
         <li>
-          <NavLink to="/TestPage">TESTPAGE</NavLink>
+          <LinkItem>
+            <NavLink to="/RegisterPage">Regiser</NavLink>
+          </LinkItem>
         </li>
         <li>
-          <NavLink to="/TestPage">TESTPAGE</NavLink>
+          <LinkItem>
+            <NavLink to="/LoginPage">Login</NavLink>
+          </LinkItem>
         </li>
         <li>
-          <NavLink to="/TestPage">TESTPAGE</NavLink>
+          <LinkItem>
+            <NavLink to="/RegisterPage">Placeholder...</NavLink>
+          </LinkItem>
         </li>
       </ul>
     </nav>

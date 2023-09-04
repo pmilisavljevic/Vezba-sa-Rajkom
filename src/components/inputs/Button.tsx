@@ -12,9 +12,10 @@ type Props = {
 //   onClick: () => null;
 // }
 
-const Button = ({ children, onClick = ()=>null }: Props) => {
+const Button = ({ children, onClick = () => null }: Props) => {
   return (
     <button
+      className="btn"
       onClick={() => {
         onClick();
       }}

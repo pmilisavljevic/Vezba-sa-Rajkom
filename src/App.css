@@ -65,7 +65,7 @@ body {
   gap: 4rem;
 }
 
-.nav-list a {
+/* .nav-list a {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -75,6 +75,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: rgb(250, 35, 62, 0.4);
   color: white;
+} */
+
+.nav-btn a:link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: rgb(250, 35, 62, 0.4);
+  color: white;
+  border: none;
 }
 
 .logo {
@@ -89,4 +102,30 @@ body {
   justify-content: center;
   /* align-items: center; */
   background-color: rgb(255, 161, 92, 0.2);
+}
+
+.input-form {
+  margin-block: 2rem;
+  margin-inline: auto;
+  width: 20rem;
+}
+
+.input-form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
