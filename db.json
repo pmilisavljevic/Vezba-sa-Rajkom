@@ -1,0 +1,26 @@
+{
+    "users": [
+      {
+        "username": "pedja88",
+        "firstName": "Predrag",
+        "lastName": "Milic",
+        "password": "test",
+        "email": "pedja@test.com"
+      },
+      {
+        "username": "rajkoR",
+        "firstName": "Rajko",
+        "lastName": "Culibrk",
+        "password": "test",
+        "email": "rajko@test.com"
+      },
+      {
+        "username": "LukaCure",
+        "firstName": "Luka",
+        "lastName": "Curcic",
+        "password": "test",
+        "email": "Luka@test.com"
+      }
+     
+    ]
+  }
