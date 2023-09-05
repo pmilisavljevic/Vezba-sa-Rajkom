@@ -23,4 +23,8 @@ function App() {
 
 export default App;
 
-// napraviti register formu, login formu, material ui, ubaciti buttone i linkovati ih
+// napraviti login formu, material ui
+// redirekcija na login posle registracije
+// prikazati greske prilikom ukucavanja podataka 
+// login logika
+// prikaziti error tokom registracije (try, CATCH, finally)

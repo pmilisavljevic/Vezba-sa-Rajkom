@@ -1,26 +1,60 @@
 {
-    "users": [
-      {
-        "username": "pedja88",
-        "firstName": "Predrag",
-        "lastName": "Milic",
-        "password": "test",
-        "email": "pedja@test.com"
-      },
-      {
-        "username": "rajkoR",
-        "firstName": "Rajko",
-        "lastName": "Culibrk",
-        "password": "test",
-        "email": "rajko@test.com"
-      },
-      {
-        "username": "LukaCure",
-        "firstName": "Luka",
-        "lastName": "Curcic",
-        "password": "test",
-        "email": "Luka@test.com"
-      }
-     
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "username": "pedja88",
+      "firstName": "Predrag",
+      "lastName": "Milic",
+      "password": "test",
+      "email": "pedja@test.com"
+    },
+    {
+      "id": 1,
+      "username": "rajkoR",
+      "firstName": "Rajko",
+      "lastName": "Culibrk",
+      "password": "test",
+      "email": "rajko@test.com"
+    },
+    {
+      "id": 1,
+      "username": "LukaCure",
+      "firstName": "Luka",
+      "lastName": "Curcic",
+      "password": "test",
+      "email": "Luka@test.com"
+    },
+    {
+      "username": "pedja88",
+      "firstName": "Predrag",
+      "lastName": "Milic",
+      "password": "test",
+      "email": "pedja@test.com",
+      "id": 2
+    },
+    {
+      "username": "pedja88",
+      "firstName": "Predrag",
+      "lastName": "Milic",
+      "password": "test",
+      "email": "pedja@test.com",
+      "id": 3
+    },
+    {
+      "username": "pedja88",
+      "firstName": "Predrag",
+      "lastName": "Milic",
+      "password": "test",
+      "email": "pedja@test.com",
+      "id": 4
+    },
+    {
+      "userName": "Pedja2",
+      "firstName": "Predrag2",
+      "lastName": "Milisav2",
+      "password": "asd",
+      "email": "pedja@test.test",
+      "id": 5
+    }
+  ]
+}
