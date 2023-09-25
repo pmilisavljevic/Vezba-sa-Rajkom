@@ -1,10 +1,5 @@
-import PageNav from "../components/PageNav";
+const TestPage = () => {
+  return <div>TestPage</div>;
+};
 
-export default function TestPage() {
-  return (
-    <div>
-      <PageNav />
-      TestPage
-    </div>
-  );
-}
+export default TestPage;

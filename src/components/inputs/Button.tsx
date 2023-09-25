@@ -1,10 +1,12 @@
 import { PropsWithChildren } from "react";
+import Button from "@mui/material/Button";
 
 // type Props = {
 //   children:ReactNode | ReactNode[]
 // }
 
 type Props = {
+  size: "small" | "medium" | "large";
   onClick?: () => null;
 } & PropsWithChildren;
 
@@ -12,17 +14,24 @@ type Props = {
 //   onClick: () => null;
 // }
 
-const Button = ({ children, onClick = () => null }: Props) => {
+const MuiButton = ({ size, children, onClick = () => null }: Props) => {
   return (
-    <button
-      className="btn"
+    <Button
+      sx={{
+        mt: 2,
+      }}
+      type="submit"
+      // className="btn"
+      variant="outlined"
+      fullWidth
+      size={size}
       onClick={() => {
         onClick();
       }}
     >
       {children}
-    </button>
+    </Button>
   );
 };
 
-export default Button;
+export default MuiButton;
