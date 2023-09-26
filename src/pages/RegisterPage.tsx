@@ -26,13 +26,13 @@ const RegisterPage = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     registerUserFunction();
     navigate("/LoginPage");
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = e.target.name;
     setFormState({
       ...formState,
@@ -107,3 +107,5 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+// staviti height

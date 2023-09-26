@@ -5,6 +5,9 @@ import { AxiosError } from "axios";
 import { loginUser } from "../services/client";
 import MuiTextInput from "../components/inputs/MuiTextInput";
 import { Container, Box, Typography } from "@mui/material";
+import { useAppContext } from "../state/context";
+import { LocalStorageKeys } from "../helpers/constansAndEnums";
+
 
 type User = {
   email: string;
@@ -12,18 +15,34 @@ type User = {
 };
 
 const LoginPage = () => {
+
+  const { state, dispatch, userActions } = useAppContext();
+  const { user } = state;
+  console.log(user);
+  
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setEmail(e.target.value);
     // console.log(e);
   };
-  const handlePassOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePassOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPass(e.target.value);
     // console.log(pass);
   };
+
+  const setMyUser = (foundUser : User) => {
+
+    const action = {
+      type: userActions.LOGIN_USER,
+      payload: foundUser,
+    };
+    localStorage.setItem(LocalStorageKeys.user, JSON.stringify(foundUser))
+
+    dispatch(action);
+  }
 
   const fetchUsers = async () => {
     setIsLoading(true);
@@ -37,7 +56,7 @@ const LoginPage = () => {
         (u: User) => u.email === email && u.password === pass
       );
       if (user) {
-        alert("Login Uspesan");
+        setMyUser(user)
       } else {
         alert("Invalid");
       }
@@ -101,3 +120,6 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
+// prebaciti find users u posebnu komponentu(hekpers0)
