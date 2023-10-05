@@ -8,41 +8,42 @@ import { Container, Box, Typography } from "@mui/material";
 import { useAppContext } from "../state/context";
 import { LocalStorageKeys } from "../helpers/constansAndEnums";
 
-
 type User = {
   email: string;
   password: string;
 };
 
 const LoginPage = () => {
-
   const { state, dispatch, userActions } = useAppContext();
   const { user } = state;
   console.log(user);
-  
+
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleEmailOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setEmail(e.target.value);
     // console.log(e);
   };
-  const handlePassOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handlePassOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPass(e.target.value);
     // console.log(pass);
   };
 
-  const setMyUser = (foundUser : User) => {
-
+  const setMyUser = (foundUser: User) => {
     const action = {
       type: userActions.LOGIN_USER,
       payload: foundUser,
     };
-    localStorage.setItem(LocalStorageKeys.user, JSON.stringify(foundUser))
+    localStorage.setItem(LocalStorageKeys.user, JSON.stringify(foundUser));
 
     dispatch(action);
-  }
+  };
 
   const fetchUsers = async () => {
     setIsLoading(true);
@@ -50,13 +51,13 @@ const LoginPage = () => {
     try {
       const response = await loginUser();
 
-      console.log(response.data);
       const users = response.data;
       const user = users.find(
         (u: User) => u.email === email && u.password === pass
       );
       if (user) {
-        setMyUser(user)
+        setMyUser(user);
+        // console.log(user);
       } else {
         alert("Invalid");
       }
@@ -120,6 +121,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
 
 // prebaciti find users u posebnu komponentu(hekpers0)

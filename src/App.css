@@ -18,7 +18,8 @@ picture {
 
 body {
   line-height: 1.5;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  height: 100%;
 }
 
 .main {
@@ -97,10 +98,12 @@ body {
 }
 
 .footer {
-  padding-block: 2rem;
+  /* padding-block: 2rem; */
+  /* margin: auto; */
+  height: 100px;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   background-color: rgb(255, 161, 92, 0.2);
 }
 
@@ -128,4 +131,14 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.main_layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
