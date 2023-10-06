@@ -56,3 +56,4 @@ export default App;
 // hook za get user data
 // koriscenje scss u reactu
 // napraviti react tostify
+// Dodati rajko na repo da radi reviev PRova
