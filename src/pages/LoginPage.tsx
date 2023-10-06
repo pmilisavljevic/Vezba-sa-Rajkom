@@ -10,13 +10,18 @@ import { LocalStorageKeys } from "../helpers/constansAndEnums";
 
 type User = {
   email: string;
-  password: string;
-};
+  userName: string,
+  firstName: string,
+  lastName: string,
+  password: string,
+ };
+
+
 
 const LoginPage = () => {
   const { state, dispatch, userActions } = useAppContext();
-  const { user } = state;
-  console.log(user);
+  const { userSlice } = state;
+  console.log(userSlice.user);
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

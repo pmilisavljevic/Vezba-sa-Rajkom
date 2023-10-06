@@ -9,7 +9,7 @@ import { LocalStorageKeys, User } from "../helpers/constansAndEnums";
 const userActions = {
   LOGIN_USER: "LOGIN_USER",
   LOGOUT_USER: "LOGOUT_USER",
-  // Add other user-related actions as needed
+  // odvojiti u poseban file
 };
 
 type UserActionType = {
@@ -19,14 +19,20 @@ type UserActionType = {
 
 // Define your user reducer
 const userReducer = (
-  state: User | null | undefined,
+  state: UserSliceType,
   action: UserActionType
 ) => {
   switch (action.type) {
     case userActions.LOGIN_USER:
-      return action.payload; // Set the user when logged in
+      return {
+        ...state,
+        user: action.payload
+      }; // Set the user when logged in
     case userActions.LOGOUT_USER:
-      return null; // Clear the user when logged out
+      return {
+        ...state,
+        user:null
+      }; // Clear the user when logged out
     // Handle other user-related actions here
     default:
       return state;
@@ -35,19 +41,26 @@ const userReducer = (
 
 // Define your initial state
 //Rename to initial state type
-type ContextType = {
+type UserSliceType = {
   user: User | null | undefined;
+}
+
+type InitialStateType = {
+  userSlice: UserSliceType
 };
 
-const initialState: ContextType = {
-  user: localStorage.getItem(LocalStorageKeys.user)
+
+const initialState: InitialStateType = {
+  userSlice: {
+    user:localStorage.getItem(LocalStorageKeys.user)
     ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
     : null,
+  }
 };
 
 // Create the context
 const AppContext = createContext<{
-  state: ContextType;
+  state: InitialStateType;
   dispatch: React.Dispatch<UserActionType>; // Specify the action type
   userActions: typeof userActions;
 }>({
@@ -60,19 +73,19 @@ const AppContext = createContext<{
 export const useAppContext = () => useContext(AppContext);
 
 const mainReducer = (
-  state: ContextType,
+  state: InitialStateType,
   action: UserActionType
-): ContextType => {
+): InitialStateType => {
   return {
     ...state,
-    user: userReducer(state.user, action),
+    userSlice: userReducer(state.userSlice, action),
   };
 };
 
 const ContextProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
   console.log(state);
-
+  
   return (
     <AppContext.Provider value={{ state, dispatch, userActions }}>
       {children}

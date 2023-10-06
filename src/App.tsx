@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import "./App.css";
 import Homepage from "./pages/Homepage";
 import TestPage from "./pages/TestPage";
 import Post from "./pages/Post";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import ContextProvider, { useAppContext } from "./state/context";
+import ContextProvider from "./state/context";
 
 function App() {
   return (
@@ -29,6 +29,8 @@ export default App;
 // nakon logina se ulazi na main UI sa buttonima za profil, logout, create new post?
 // isAuthenticated staviti gde?
 // napraviti nove nested rute za main UI i staviti Protected routes oko MainUI elementa
+// kondicionalno renderovanje dugmica
+
 // napraviti page za pravljenje posta
 // napraviti page i LOGIKU za editovanje profila
 // napraviti logiku za logout dugme
@@ -49,3 +51,8 @@ export default App;
 //   return isAuthenticated ? children : null;
 // }
 // export default ProtectedRoute
+
+//tuthy and falsy what are they
+// hook za get user data
+// koriscenje scss u reactu
+// napraviti react tostify

@@ -5,5 +5,12 @@ export const LocalStorageKeys = {
 
 export type User = {
     email: string;
+    userName: string,
+    firstName: string,
+    lastName: string,
+   };
+
+ export  type UserLoginDTO = {
+    email: string;
     password: string;
-  };
+  }

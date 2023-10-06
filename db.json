@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
-      "userName": "pedja88",
+      "username": "pedja90",
       "firstName": "Predrag",
       "lastName": "Milic",
       "password": "test",
-      "email": "pedja@test.com"
+      "email": "pedja@test.com",
+      "id": 1
     },
     {
       "id": 2,
@@ -31,6 +31,15 @@
       "lastName": "Milisav2",
       "password": "asd",
       "email": "pedja@test.test"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Seeded post",
+      "text": "Lorem gypsym",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDGQ55_znshhGDlxv5sDZz96tD3hxPc5j8CVWMKvJcw&s",
+      "userId": 1
     }
   ]
 }

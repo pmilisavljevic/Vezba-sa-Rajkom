@@ -6,10 +6,16 @@ import MuiButton from "../components/inputs/Button";
 import { Container, Box, Typography } from "@mui/material";
 import MuiTextInput from "../components/inputs/MuiTextInput";
 import { AxiosError } from "axios";
+import { useAppContext } from "../state/context";
 
 const RegisterPage = () => {
+  const {state : { userSlice:{ user } }} = useAppContext()
+  
+  
+ 
+
   const [formState, setFormState] = useState({
-    userName: "",
+    userName: user?.userName || "",
     firstName: "",
     lastName: "",
     password: "",
