@@ -1,3 +1,3 @@
 export default function Section() {
-  return <section className="blogs"></section>;
+  return <section className="blogs">SECTION PAGE?</section>;
 }

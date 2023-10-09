@@ -6,13 +6,14 @@ import MuiButton from "../components/inputs/Button";
 import { Container, Box, Typography } from "@mui/material";
 import MuiTextInput from "../components/inputs/MuiTextInput";
 import { AxiosError } from "axios";
-import { useAppContext } from "../state/context";
+import { useAppContext } from "../components/hooks/useAppContext";
 
 const RegisterPage = () => {
-  const {state : { userSlice:{ user } }} = useAppContext()
-  
-  
- 
+  const {
+    state: {
+      userSlice: { user },
+    },
+  } = useAppContext();
 
   const [formState, setFormState] = useState({
     userName: user?.userName || "",
@@ -48,6 +49,7 @@ const RegisterPage = () => {
       ...formState,
       [name]: e.target.value,
     });
+    console.log(formState);
   };
 
   return (

@@ -2,7 +2,7 @@ import {
   PropsWithChildren,
   createContext,
   useReducer,
-  useContext,
+  // useContext,
 } from "react";
 import { LocalStorageKeys, User } from "../helpers/constansAndEnums";
 
@@ -18,20 +18,17 @@ type UserActionType = {
 };
 
 // Define your user reducer
-const userReducer = (
-  state: UserSliceType,
-  action: UserActionType
-) => {
+const userReducer = (state: UserSliceType, action: UserActionType) => {
   switch (action.type) {
     case userActions.LOGIN_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       }; // Set the user when logged in
     case userActions.LOGOUT_USER:
       return {
         ...state,
-        user:null
+        user: null,
       }; // Clear the user when logged out
     // Handle other user-related actions here
     default:
@@ -43,19 +40,18 @@ const userReducer = (
 //Rename to initial state type
 type UserSliceType = {
   user: User | null | undefined;
-}
-
-type InitialStateType = {
-  userSlice: UserSliceType
 };
 
+type InitialStateType = {
+  userSlice: UserSliceType;
+};
 
 const initialState: InitialStateType = {
   userSlice: {
-    user:localStorage.getItem(LocalStorageKeys.user)
-    ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
-    : null,
-  }
+    user: localStorage.getItem(LocalStorageKeys.user)
+      ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
+      : null,
+  },
 };
 
 // Create the context
@@ -70,7 +66,6 @@ const AppContext = createContext<{
 });
 
 // Create a custom hook for using the context
-export const useAppContext = () => useContext(AppContext);
 
 const mainReducer = (
   state: InitialStateType,
@@ -84,8 +79,8 @@ const mainReducer = (
 
 const ContextProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
-  console.log(state);
-  
+  // console.log(state.userSlice.user);
+
   return (
     <AppContext.Provider value={{ state, dispatch, userActions }}>
       {children}
@@ -93,4 +88,4 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default ContextProvider;
+export { ContextProvider, AppContext };

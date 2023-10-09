@@ -5,23 +5,23 @@ import { AxiosError } from "axios";
 import { loginUser } from "../services/client";
 import MuiTextInput from "../components/inputs/MuiTextInput";
 import { Container, Box, Typography } from "@mui/material";
-import { useAppContext } from "../state/context";
+// import { useAppContext } from "../state/context";
 import { LocalStorageKeys } from "../helpers/constansAndEnums";
+import { useAppContext } from "../components/hooks/useAppContext";
+import { useNavigate } from "react-router-dom";
 
 type User = {
   email: string;
-  userName: string,
-  firstName: string,
-  lastName: string,
-  password: string,
- };
-
-
+  userName: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+};
 
 const LoginPage = () => {
   const { state, dispatch, userActions } = useAppContext();
   const { userSlice } = state;
-  console.log(userSlice.user);
+  // console.log(userSlice.user);
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -50,6 +50,8 @@ const LoginPage = () => {
     dispatch(action);
   };
 
+  const navigate = useNavigate();
+
   const fetchUsers = async () => {
     setIsLoading(true);
 
@@ -62,7 +64,7 @@ const LoginPage = () => {
       );
       if (user) {
         setMyUser(user);
-        // console.log(user);
+        navigate("/MainBlog");
       } else {
         alert("Invalid");
       }
@@ -76,6 +78,7 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetchUsers();
+
     // console.log(email);
   };
   return (

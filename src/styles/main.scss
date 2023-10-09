@@ -1,6 +1,11 @@
-body{
-    opacity: 0.2;
+body {
+  opacity: 1;
 }
+.main {
+  height: 80vh;
+}
+
+@import "/src/components/layouts/MainLayout.scss";
 
 //Pages imports
 

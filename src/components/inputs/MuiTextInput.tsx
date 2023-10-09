@@ -1,10 +1,12 @@
 import { TextField } from "@mui/material";
 
 type Props = {
-  name: string;
+  name?: string;
   label: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   type?: "text" | "password" | "email";
 };
 

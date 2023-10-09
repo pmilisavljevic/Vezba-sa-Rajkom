@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "username": "pedja90",
+      "userName": "pedja90",
       "firstName": "Predrag",
       "lastName": "Milic",
       "password": "test",
@@ -40,6 +40,12 @@
       "text": "Lorem gypsym",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDGQ55_znshhGDlxv5sDZz96tD3hxPc5j8CVWMKvJcw&s",
       "userId": 1
+    },
+    {
+      "title": "Test Title",
+      "body": "Ti si meni samo....",
+      "userName": "pedja90",
+      "id": 2
     }
   ]
 }

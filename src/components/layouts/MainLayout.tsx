@@ -8,7 +8,7 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="main_layout">
       <PageNav />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow layout-container">{children}</div>
       <Footer />
     </div>
   );
