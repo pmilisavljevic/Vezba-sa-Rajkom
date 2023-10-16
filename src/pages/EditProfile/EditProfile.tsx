@@ -1,31 +1,41 @@
-import MainLayout from "../components/layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useState } from "react";
-import { registerUser } from "../services/client";
+// import { registerUser } from "../../services/client";
 import { useNavigate } from "react-router-dom";
-import MuiButton from "../components/inputs/Button";
+import MuiButton from "../../components/inputs/Button";
+import MuiTextInput from "../../components/inputs/MuiTextInput";
+import axios, { AxiosError } from "axios";
+// import { useAppContext } from "../../hooks/useAppContext";
 import { Container, Box, Typography } from "@mui/material";
-import MuiTextInput from "../components/inputs/MuiTextInput";
-import { AxiosError } from "axios";
-import { useAppContext } from "../components/hooks/useAppContext";
+import { LocalStorageKeys } from "../../helpers/constantsAndEnums";
 
-const RegisterPage = () => {
-  const {
-    state: {
-      userSlice: { user },
-    },
-  } = useAppContext();
+function EditProfile() {
+  // const {
+  //   state: {
+  //     userSlice: { user },
+  //   },
+  // } = useAppContext();
 
-  const [formState, setFormState] = useState({
-    userName: user?.userName || "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    email: "",
+  const localUser = JSON.parse(
+    localStorage.getItem(LocalStorageKeys.user) || ""
+  );
+  // console.log(localUser);
+
+  const [profileUpdate, setProfileUpdate] = useState({
+    userName: localUser?.userName || "",
+    firstName: localUser?.firstName || "",
+    lastName: localUser?.lastName || "",
+    email: localUser?.email || "",
+    id: localUser?.id,
+    password: localUser.password,
   });
-
-  const registerUserFunction = async () => {
+  // console.log(profileUpdate);
+  const profileUpdateFunction = async () => {
     try {
-      await registerUser(formState);
+      await axios.put(
+        `http://localhost:3000/users/${localUser?.id}`,
+        profileUpdate
+      );
     } catch (err) {
       console.log(AxiosError);
     }
@@ -37,19 +47,20 @@ const RegisterPage = () => {
     e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>
   ) => {
     e.preventDefault();
-    registerUserFunction();
-    navigate("/LoginPage");
+    profileUpdateFunction();
+    navigate("/");
+    // alert("test");
   };
 
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const name = e.target.name;
-    setFormState({
-      ...formState,
+    setProfileUpdate({
+      ...profileUpdate,
       [name]: e.target.value,
     });
-    console.log(formState);
+    // console.log(formState);
   };
 
   return (
@@ -66,7 +77,7 @@ const RegisterPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Register
+              Profile
             </Typography>
             <Box
               component="form"
@@ -79,45 +90,37 @@ const RegisterPage = () => {
             >
               <MuiTextInput
                 label="User Name"
-                value={formState.userName}
+                value={profileUpdate.userName}
                 name="userName"
                 onChange={handleOnChange}
               />
               <MuiTextInput
                 label="First Name"
-                value={formState.firstName}
+                value={profileUpdate.firstName}
                 name="firstName"
                 onChange={handleOnChange}
               />
               <MuiTextInput
                 label="Last Name"
-                value={formState.lastName}
+                value={profileUpdate.lastName}
                 name="lastName"
                 onChange={handleOnChange}
               />
-              <MuiTextInput
-                label="Password"
-                value={formState.password}
-                name="password"
-                onChange={handleOnChange}
-                type="password"
-              />
+
               <MuiTextInput
                 label="Email"
-                value={formState.email}
+                value={profileUpdate.email}
                 name="email"
                 onChange={handleOnChange}
                 type="email"
               />
+              <MuiButton size="large">SUBMIT</MuiButton>
             </Box>
-            <MuiButton size="large">SUBMIT</MuiButton>
           </Box>
         </Container>
       </div>
     </MainLayout>
   );
-};
+}
 
-export default RegisterPage;
-
-// staviti height
+export default EditProfile;

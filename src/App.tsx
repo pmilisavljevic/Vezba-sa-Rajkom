@@ -1,37 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Homepage from "./pages/Homepage";
-import TestPage from "./pages/TestPage";
-import Post from "./pages/NewPost";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+import "./styles/App.scss";
+import Homepage from "./pages/Homepage/Homepage";
+
+import NewPost from "./pages/NewPost/NewPost";
+// import RegisterPage from "./pages/Register/RegisterPage";
+import Register2 from "./pages/Register/Register2";
+import LoginPage from "./pages/Login/LoginPage";
 import { ContextProvider } from "./state/context";
-import MainBlogPage from "./pages/MainBlogPage";
-import MyPosts from "./pages/MyPosts";
-import EditProfile from "./pages/EditProfile";
-import ProtectedRoute from "./pages/ProtectedRoute";
+// import MyPosts from "./pages/MainBlogPage/components/MyPosts";
+import EditProfile from "./pages/EditProfile/EditProfile";
+import MyPosts from "./pages/MyPosts/MyPosts";
+// import ProtectedRoute from "./state/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <ContextProvider>
         <Routes>
-          <Route path="/TestPage" element={<TestPage />} />
-
-          <Route path="RegisterPage" element={<RegisterPage />} />
+          <Route path="RegisterPage" element={<Register2 />} />
           <Route path="LoginPage" element={<LoginPage />} />
-          <Route
-            path="MainBlog"
-            element={
-              <ProtectedRoute>
-                <MainBlogPage />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<MyPosts />} />
-            <Route path="Post" element={<Post />} />
-            <Route path="EditProfile" element={<EditProfile />} />
-          </Route>
+
+          <Route path="NewPost" element={<NewPost />} />
+          <Route path="EditProfile" element={<EditProfile />} />
+          <Route path="MyPosts" element={<MyPosts />} />
 
           <Route path="/" element={<Homepage />} />
         </Routes>
@@ -42,32 +33,35 @@ function App() {
 
 export default App;
 
-// nakon logina se ulazi na main UI sa buttonima za profil, logout, create new post? DONE
-// isAuthenticated staviti gde? DONE
-// napraviti nove nested rute za main UI i staviti Protected routes oko MainUI elementa DONE
-// kondicionalno renderovanje dugmica DONE
-// napraviti logiku za logout dugme DONE
-// napraviti page za pravljenje posta i editovanje profila DONE
-// github i pull request DONE
-// gde staviti isLoading? DONE
-// DISPLAY I LOGIKA ZA PRAVLJENJE POSTA DONE
-
-// DISPLAY I LOGIKA za editovanje profila
-
-// sass DONE, ali nauciti
-
+// DISPLAY I LOGIKA za editovanje profila DONE
+// layout i footer svuda srediti DONE
+// formik i yup za registraciju DONEEEEEE
+// logout dugme DONE
 /* ZA DALJE
-Error ako nije pronadjen korisnik
+kad se user uloguje, ide na glavnu stranu, dodati dugme za my Posts DONE
+napraviti react toastify (nakon logina)
+nakon submita novog posta da se vrati na myPosts DONE
+dropdown menu za create post i edit profile (MUI) DONEEEEEE
+na useru de stavi slika(dodati jos jedno polje na Useru)
+element za change password u stranici profila
+MUI card component za prikazivanje postove(sa toggle expandom) | MUI Card!
 truthy and falsy what are they
-hook za get user data
-koriscenje scss u reactu
-napraviti react tostify
-- kako renderovati postove u MainBlogPage? (map?)
-- ideja prepoznavanja usera i dodeljivanja id-ja postovima
-- struktura db-a? posts/?
-*/
 
+PROBLEMI
+ne dobijam sifru od usera prilikom editovanja profila. RESENO (uzimam podatke iz localStorage)
+kada editujem profil i PUT-ujem, update-uje se u db-u, ali ne i u localStorage-u
+
+dodati Edit post
+json server relational data
+sta je PAGINATION?
+search za postove po title-u
+staviti loader-e gde se ceka api
+refaktorisati profileUpdate f.
+*/
 /*IDEJE
-- napraviti kategorije postova i filtere za prikazivanje
-- editovanje posta
+- napraviti kategorije postova i filtere za prikazivanje MOZE
+- editovanje posta MOZE
+- staviti Lazy Loading
+- dodati generisani datum kada je submitovan post
+- dodati random sliku svakom korisniku
 */

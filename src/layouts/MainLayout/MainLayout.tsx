@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
-import PageNav from "../PageNav";
-import Footer from "../Footer";
+import PageNav from "./components/PageNav";
+import Footer from "./components/Footer";
 
 type Props = PropsWithChildren;
 

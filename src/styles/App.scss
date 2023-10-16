@@ -1,0 +1,13 @@
+body {
+  opacity: 1;
+  font-family: "Roboto", sans-serif;
+}
+.main {
+  height: 80vh;
+}
+@import "/src/styles/Old.css";
+@import "/src/layouts/MainLayout/MainLayout.scss";
+
+//Pages imports
+
+//Components imports

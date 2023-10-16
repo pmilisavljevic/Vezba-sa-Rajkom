@@ -1,13 +1,12 @@
-import MainLayout from "../components/layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useState } from "react";
-import Button from "../components/inputs/Button";
+import Button from "../../components/inputs/Button";
 import { AxiosError } from "axios";
-import { loginUser } from "../services/client";
-import MuiTextInput from "../components/inputs/MuiTextInput";
+import { fetchUsers } from "../../services/client";
+import MuiTextInput from "../../components/inputs/MuiTextInput";
 import { Container, Box, Typography } from "@mui/material";
-// import { useAppContext } from "../state/context";
-import { LocalStorageKeys } from "../helpers/constansAndEnums";
-import { useAppContext } from "../components/hooks/useAppContext";
+import { LocalStorageKeys } from "../../helpers/constantsAndEnums";
+import { useAppContext } from "../../hooks/useAppContext";
 import { useNavigate } from "react-router-dom";
 
 type User = {
@@ -16,11 +15,13 @@ type User = {
   firstName: string;
   lastName: string;
   password: string;
+  image: string;
+  id: number;
 };
 
 const LoginPage = () => {
-  const { state, dispatch, userActions } = useAppContext();
-  const { userSlice } = state;
+  const { dispatch, userActions } = useAppContext();
+  // const { userSlice } = state;
   // console.log(userSlice.user);
 
   const [email, setEmail] = useState("");
@@ -31,32 +32,29 @@ const LoginPage = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setEmail(e.target.value);
-    // console.log(e);
   };
   const handlePassOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setPass(e.target.value);
-    // console.log(pass);
   };
 
   const setMyUser = (foundUser: User) => {
-    const action = {
-      type: userActions.LOGIN_USER,
-      payload: foundUser,
-    };
     localStorage.setItem(LocalStorageKeys.user, JSON.stringify(foundUser));
 
-    dispatch(action);
+    dispatch({
+      type: userActions.LOGIN_USER,
+      payload: foundUser,
+    });
   };
 
   const navigate = useNavigate();
 
-  const fetchUsers = async () => {
+  const logInUser = async () => {
     setIsLoading(true);
 
     try {
-      const response = await loginUser();
+      const response = await fetchUsers();
 
       const users = response.data;
       const user = users.find(
@@ -64,9 +62,9 @@ const LoginPage = () => {
       );
       if (user) {
         setMyUser(user);
-        navigate("/MainBlog");
+        navigate("/");
       } else {
-        alert("Invalid");
+        alert("User not found");
       }
     } catch (err) {
       console.error(AxiosError);
@@ -77,10 +75,9 @@ const LoginPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchUsers();
-
-    // console.log(email);
+    logInUser();
   };
+
   return (
     <MainLayout>
       <div>{isLoading && <h2>Loading...</h2>}</div>
