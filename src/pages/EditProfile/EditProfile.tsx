@@ -21,20 +21,37 @@ function EditProfile() {
   );
   // console.log(localUser);
 
-  const [profileUpdate, setProfileUpdate] = useState({
+  type UpdateProfilePayload = {
+    userName: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    id: string,
+    password?:string
+  }
+  const [password, setPassword] = useState("")
+  const [profileUpdate, setProfileUpdate] = useState<UpdateProfilePayload>({
     userName: localUser?.userName || "",
     firstName: localUser?.firstName || "",
     lastName: localUser?.lastName || "",
     email: localUser?.email || "",
     id: localUser?.id,
-    password: localUser.password,
   });
+
+  
+
+
   // console.log(profileUpdate);
   const profileUpdateFunction = async () => {
     try {
-      await axios.put(
+      const payload = {...profileUpdate}
+      if(password){
+        payload.password = password
+      }
+
+      await axios.patch(
         `http://localhost:3000/users/${localUser?.id}`,
-        profileUpdate
+        payload
       );
     } catch (err) {
       console.log(AxiosError);
@@ -113,6 +130,14 @@ function EditProfile() {
                 name="email"
                 onChange={handleOnChange}
                 type="email"
+              />
+                <MuiTextInput
+                label="Pasword"
+                value={password}
+                name="password"
+                onChange={(e)=>setPassword(e.target.value)}
+                type="password"
+                required={false}
               />
               <MuiButton size="large">SUBMIT</MuiButton>
             </Box>

@@ -4,6 +4,7 @@ type Props = {
   name?: string;
   label: string;
   value: string;
+  required?:boolean
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -16,6 +17,7 @@ export default function MuiTextInput({
   onChange = () => null,
   type = "text",
   value,
+  required=true
 }: Props) {
   return (
     <TextField
@@ -24,7 +26,7 @@ export default function MuiTextInput({
       type={type}
       value={value}
       onChange={(e) => onChange(e)}
-      required
+      required={required}
       fullWidth
       autoFocus
       margin="normal"
