@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Posts } from "../hooks/useGetPosts";
+// import { Posts } from "../hooks/useGetPosts";
 import { Card, CardContent, CardHeader, IconButton } from "@mui/material";
 // import CardContent from "@mui/material/CardContent";
 // import CardHeader from "@mui/material/CardHeader";

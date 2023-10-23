@@ -10,13 +10,25 @@ import {
   userActions,
 } from "../helpers/constantsAndEnums";
 
-// Initial state
 type UserSliceType = {
   user: User | null | undefined;
 };
 
+export type PostType = {
+  img: string;
+  title: string;
+  body: string;
+  userName: string;
+  date: string;
+  id: number;
+};
+type PostsSliceType = {
+  posts: PostType[];
+};
+// Initial state
 type InitialStateType = {
   userSlice: UserSliceType;
+  postsSlice: PostsSliceType;
 };
 
 const initialState: InitialStateType = {
@@ -25,10 +37,17 @@ const initialState: InitialStateType = {
       ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
       : null,
   },
+  postsSlice: {
+    posts: [],
+  },
 };
 type UserActionType = {
   type: string;
   payload?: User;
+};
+type PostsActionType = {
+  type: string;
+  payload: PostType[];
 };
 
 //user reducer
@@ -50,6 +69,19 @@ const userReducer = (state: UserSliceType, action: UserActionType) => {
   }
 };
 
+const postsReducer = (state: PostsSliceType, action: PostsActionType) => {
+  switch (action.type) {
+    case "GET_ALL_POSTS":
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
 // Create context
 const AppContext = createContext<{
   state: InitialStateType;
@@ -61,13 +93,12 @@ const AppContext = createContext<{
   userActions,
 });
 
-const mainReducer = (
-  state: InitialStateType,
-  action: UserActionType
-): InitialStateType => {
+const mainReducer = (state: InitialStateType, action): InitialStateType => {
   return {
     ...state,
     userSlice: userReducer(state.userSlice, action),
+    postsSlice: postsReducer(state.postsSlice, action),
+    // OVDE SAM TI PRICAO DA IMAM ISTU AKCIJU ZA DVA RAZLICITA SLICE-A
   };
 };
 

@@ -4,10 +4,10 @@
       "userName": "pedja90",
       "firstName": "Predrag",
       "lastName": "Milic",
-      "password": "123456",
+      "password": "novi",
       "email": "pedja@test.com",
       "id": 1,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDGQ55_znshhGDlxv5sDZz96tD3hxPc5j8CVWMKvJcw&s"
+      "image": "https://picsum.photos/200"
     },
     {
       "id": 2,
@@ -52,28 +52,20 @@
   ],
   "posts": [
     {
-      "title": "Test Title",
-      "body": "TEST BODY",
+      "img": "https://picsum.photos/1000/200?random=1",
+      "title": "Lizzard",
+      "body": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
       "userName": "pedja90",
+      "date": "22/10/2023",
+      "id": 1
+    },
+    {
+      "img": "https://picsum.photos/1000/200?random=2",
+      "title": "Lizzard",
+      "body": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+      "userName": "pedja90",
+      "date": "22/10/2023",
       "id": 2
-    },
-    {
-      "title": "Lorem test",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis. Nibh tortor id aliquet lectus proin nibh nisl. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Consectetur adipiscing elit ut aliquam purus. Justo laoreet sit amet cursus sit amet dictum sit amet. Eu facilisis sed odio morbi quis. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Nibh praesent tristique magna sit amet purus. Viverra vitae congue eu consequat. Euismod in pellentesque massa placerat duis ultricies lacus. Facilisi nullam vehicula ipsum a arcu cursus vitae. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Leo a diam sollicitudin tempor id. Commodo odio aenean sed adipiscing.\n\nVolutpat est velit egestas dui id ornare arcu odio ut. Blandit libero volutpat sed cras ornare arcu dui vivamus. Integer enim neque volutpat ac tincidunt vitae semper quis. Vitae tortor condimentum lacinia quis. Aliquet sagittis id consectetur purus ut. Quis vel eros donec ac odio tempor. Donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque. Egestas diam in arcu cursus euismod quis viverra nibh cras. Velit dignissim sodales ut eu sem integer vitae. Nisl suscipit adipiscing bibendum est ultricies.",
-      "userName": "pedja90",
-      "id": 3
-    },
-    {
-      "title": "Test 2",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis. Nibh tortor id aliquet lectus proin nibh nisl. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Consectetur adipiscing elit ut aliquam purus. Justo laoreet sit amet cursus sit amet dictum sit amet. Eu facilisis sed odio morbi quis. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Nibh praesent tristique magna sit amet purus. Viverra vitae congue eu consequat. Euismod in pellentesque massa placerat duis ultricies lacus. Facilisi nullam vehicula ipsum a arcu cursus vitae. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Leo a diam sollicitudin tempor id. Commodo odio aenean sed adipiscing.\n\nVolutpat est velit egestas dui id ornare arcu odio ut. Blandit libero volutpat sed cras ornare arcu dui vivamus. Integer enim neque volutpat ac tincidunt vitae semper quis. Vitae tortor condimentum lacinia quis. Aliquet sagittis id consectetur purus ut. Quis vel eros donec ac odio tempor. Donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque. Egestas diam in arcu cursus euismod quis viverra nibh cras. Velit dignissim sodales ut eu sem integer vitae. Nisl suscipit adipiscing bibendum est ultricies.",
-      "userName": "rajkoR",
-      "id": 4
-    },
-    {
-      "title": "Test 3",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis. Nibh tortor id aliquet lectus proin nibh nisl. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Consectetur adipiscing elit ut aliquam purus. Justo laoreet sit amet cursus sit amet dictum sit amet. Eu facilisis sed odio morbi quis. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Nibh praesent tristique magna sit amet purus. Viverra vitae congue eu consequat. Euismod in pellentesque massa placerat duis ultricies lacus. Facilisi nullam vehicula ipsum a arcu cursus vitae. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Leo a diam sollicitudin tempor id. Commodo odio aenean sed adipiscing.\n\nVolutpat est velit egestas dui id ornare arcu odio ut. Blandit libero volutpat sed cras ornare arcu dui vivamus. Integer enim neque volutpat ac tincidunt vitae semper quis. Vitae tortor condimentum lacinia quis. Aliquet sagittis id consectetur purus ut. Quis vel eros donec ac odio tempor. Donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque. Egestas diam in arcu cursus euismod quis viverra nibh cras. Velit dignissim sodales ut eu sem integer vitae. Nisl suscipit adipiscing bibendum est ultricies.",
-      "userName": "Pedja2",
-      "id": 5
     }
   ]
 }

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { createNewPost } from "../../services/client";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useNavigate } from "react-router-dom";
+import { getFormattedDate } from "../../utils/dataFormat";
 
 function NewPost() {
   const {
@@ -17,10 +18,13 @@ function NewPost() {
   // console.log(user);
 
   const [newPost, setNewPost] = useState({
+    img: "https://picsum.photos/1000/200?random",
     title: "",
     body: "",
     userName: user?.userName,
+    date: getFormattedDate(),
   });
+  // console.log(newPost);
 
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
