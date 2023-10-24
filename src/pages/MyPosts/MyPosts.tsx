@@ -4,13 +4,13 @@ import Post from "../../components/Post";
 import { useGetPosts } from "../../hooks/useGetPosts";
 import { useAppContext } from "../../hooks/useAppContext";
 function MyPosts() {
-  const { posts } = useGetPosts();
+  useGetPosts();
   const { state } = useAppContext();
-  console.log(posts);
+
   return (
     <MainLayout>
       <div>
-        {posts
+        {state.postsSlice.posts
           .filter((item) => item.userName === state.userSlice.user?.userName)
           .map((post) => (
             <Post

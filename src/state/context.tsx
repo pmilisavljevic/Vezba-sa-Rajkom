@@ -34,8 +34,8 @@ type InitialStateType = {
 const initialState: InitialStateType = {
   userSlice: {
     user: localStorage.getItem(LocalStorageKeys.user)
-      ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
-      : null,
+        ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
+        : null,
   },
   postsSlice: {
     posts: [],
@@ -43,12 +43,14 @@ const initialState: InitialStateType = {
 };
 type UserActionType = {
   type: string;
-  payload?: User;
+  payload: User | null;
 };
 type PostsActionType = {
   type: string;
-  payload: PostType[];
+  payload: PostType[] ;
 };
+
+type GeneralActionType = UserActionType | PostsActionType;
 
 //user reducer
 const userReducer = (state: UserSliceType, action: UserActionType) => {
@@ -63,7 +65,7 @@ const userReducer = (state: UserSliceType, action: UserActionType) => {
         ...state,
         user: null,
       }; // Clear the user when logged out
-    //
+      //
     default:
       return state;
   }
@@ -85,7 +87,7 @@ const postsReducer = (state: PostsSliceType, action: PostsActionType) => {
 // Create context
 const AppContext = createContext<{
   state: InitialStateType;
-  dispatch: React.Dispatch<UserActionType>; // Specify the action type
+  dispatch: React.Dispatch<UserActionType|PostsActionType>   ; // Specify the action type
   userActions: typeof userActions;
 }>({
   state: initialState,
@@ -93,14 +95,37 @@ const AppContext = createContext<{
   userActions,
 });
 
-const mainReducer = (state: InitialStateType, action): InitialStateType => {
-  return {
-    ...state,
-    userSlice: userReducer(state.userSlice, action),
-    postsSlice: postsReducer(state.postsSlice, action),
-    // OVDE SAM TI PRICAO DA IMAM ISTU AKCIJU ZA DVA RAZLICITA SLICE-A
-  };
+const mainReducer = (state: InitialStateType, action: GeneralActionType): InitialStateType => {
+  //READ
+  //here we user two helper functions to checks for what kind of an action we are dispatching
+  // does that application fall in the user action types or post action types
+  if (isUserAction(action)) {
+    return {
+      ...state,
+      userSlice: userReducer(state.userSlice, action),
+    };
+  }
+
+  if (isPostsAction(action)) {
+    return {
+      ...state,
+      postsSlice: postsReducer(state.postsSlice, action),
+    };
+  }
+
+  return state;
 };
+//READ
+// These two functions check of what type is the user action being dispatched as in
+// do they fall in the category of user actions or posts actions
+function isUserAction(action: GeneralActionType): action is UserActionType {
+  return (action as UserActionType).type in userActions;
+}
+
+function isPostsAction(action: GeneralActionType): action is PostsActionType {
+  // make an array with posts actions as with userActions above
+  return (action as PostsActionType).type === "GET_ALL_POSTS"; // Adjust as needed
+}
 
 // Context provider
 const ContextProvider = ({ children }: PropsWithChildren) => {
@@ -108,9 +133,9 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
   // console.log(state.userSlice.user);
 
   return (
-    <AppContext.Provider value={{ state, dispatch, userActions }}>
-      {children}
-    </AppContext.Provider>
+      <AppContext.Provider value={{ state, dispatch, userActions }}>
+        {children}
+      </AppContext.Provider>
   );
 };
 

@@ -1,4 +1,6 @@
-import { axiosInstance } from "../helpers/axiosInstance";
+import {axiosInstance} from "../helpers/axiosInstance";
+import {AxiosResponse} from "axios";
+import {PostType} from "../state/context";
 
 export type createUserDto = {
   userName: string;
@@ -25,7 +27,7 @@ export const fetchUsers = async () => {
 export const createNewPost = async (payload: newPostTypes) => {
   return axiosInstance.post("/posts", payload);
 };
-
-export const fetchPosts = async () => {
+//READ  here we typed the response from axios so we know the return type when we use the function
+export const fetchPosts = async () : Promise<AxiosResponse<PostType[]>> => {
   return axiosInstance.get("/posts");
 };

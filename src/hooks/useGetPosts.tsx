@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { fetchPosts } from "../services/client";
 import { useAppContext } from "./useAppContext";
+import {PostType} from "../state/context";
 
 export function useGetPosts() {
   const { dispatch } = useAppContext();
 
-  const displayPosts = (posts) => {
+  const displayPosts = (posts: PostType[]) => {
     dispatch({ type: "GET_ALL_POSTS", payload: posts });
   };
   useEffect(() => {
