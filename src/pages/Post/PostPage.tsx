@@ -10,22 +10,21 @@ export const PostPage = () => {
       postsSlice: { posts },
     },
   } = useAppContext();
-  // console.log(posts);
+
   const { id } = useParams();
-  // KAKO DA NA SILU STAVIM ID DA BUDE STRING, BEZ UNDEFINED?
-  console.log(id);
 
   const foundPost = posts.find((post) => post.id === Number(id));
-  // console.log(foundPost);
 
   return (
     <MainLayout>
-      <PostComponent
-        userName={foundPost.userName}
-        date={foundPost.date}
-        title={foundPost.title}
-        body={foundPost.body}
-      />
+      {foundPost && (
+        <PostComponent
+          userName={foundPost.userName}
+          date={foundPost.date}
+          title={foundPost.title}
+          body={foundPost.body}
+        />
+      )}
     </MainLayout>
   );
 };

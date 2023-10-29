@@ -21,12 +21,27 @@ export const userActions = {
   LOGOUT_USER: "LOGOUT_USER",
 };
 
-
 export type Post = {
   img: string;
   title: string;
   body: string;
   userName: string;
   date: string;
+  id: number;
+  category?: string;
+};
+
+export const catColors = {
+  general: "#5fad56ff",
+  history: "#f2c14eff",
+  IT: "#f78154ff",
+  nature: "#4d9078ff",
+  music: "#b4436cff",
+  world: "#de9151ff",
+  science: "#aef78eff",
+};
+
+export type Category = {
+  name: string;
   id: number;
 };

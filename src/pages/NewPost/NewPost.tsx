@@ -8,6 +8,8 @@ import { createNewPost } from "../../services/client";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useNavigate } from "react-router-dom";
 import { getFormattedDate } from "../../utils/dataFormat";
+import CategorySelector from "./CategorySelector";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 function NewPost() {
   const {
@@ -17,24 +19,29 @@ function NewPost() {
   } = useAppContext();
   // console.log(user);
 
+  const randomNumber = Math.floor(Math.random() * 200) + 1;
+
   const [newPost, setNewPost] = useState({
-    img: "https://picsum.photos/1000/200?random",
+    img: `https://picsum.photos/1000/200?random=${randomNumber}`,
     title: "",
     body: "",
     userName: user?.userName,
     date: getFormattedDate(),
+    category: "general",
   });
   // console.log(newPost);
 
   const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent<string>
   ) => {
     const { name, value } = e.target;
     setNewPost({
       ...newPost,
       [name]: value,
     });
-    // console.log(newPost);
+    console.log(newPost);
   };
 
   const navigate = useNavigate();
@@ -94,6 +101,10 @@ function NewPost() {
               rows={10}
               fullWidth
               value={newPost.body}
+              onChange={handleOnChange}
+            />
+            <CategorySelector
+              category={newPost.category}
               onChange={handleOnChange}
             />
             <Button size="large">SUBMIT</Button>

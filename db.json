@@ -57,6 +57,7 @@
       "body": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
       "userName": "pedja90",
       "date": "22/10/2023",
+      "category": "science",
       "id": 1
     },
     {
@@ -65,23 +66,44 @@
       "body": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
       "userName": "pedja90",
       "date": "22/10/2023",
+      "category": "general",
       "id": 2
     },
     {
-      "img": "https://picsum.photos/1000/200?random",
-      "title": "asdfasdf",
-      "body": "asdfasdf",
-      "userName": "adsfadsf",
-      "date": "24/10/2023",
-      "id": 3
+      "img": "https://picsum.photos/1000/200?random=66",
+      "title": "Nature Title",
+      "body": "Can cinnamon transform you into Rapunzel overnight? No. But it might help your hair grow a bit.\n\nA 2018 animal study found that cinnamon oil helped lengthen the hair in male rates. This might be due to cinnamon’s cinnamaldehyde levels. This compound is thought to improve blood flow and circulation to hair follicles. Additionally, a 2019 review found that procyanidin — a type of flavonoid found in cinnamon — is associated with hair growth.\n\nBut wait, there’s more! Some anecdotal research suggests using cinnamon on the scalp can improve dandruff, thanks to its antifungal properties. But again, we need more research to prove the perks.",
+      "userName": "pedja90",
+      "date": "29/10/2023",
+      "category": "nature",
+      "id": 8
     },
     {
-      "img": "https://picsum.photos/1000/200?random",
-      "title": "sdgfdsfg",
-      "body": "asdffas",
-      "userName": "adsfadsf",
-      "date": "24/10/2023",
-      "id": 4
+      "img": "https://picsum.photos/1000/200?random=29",
+      "title": "Nature 2 Ttitle",
+      "body": "Can cinnamon transform you into Rapunzel overnight? No. But it might help your hair grow a bit.\n\nA 2018 animal study found that cinnamon oil helped lengthen the hair in male rates. This might be due to cinnamon’s cinnamaldehyde levels. This compound is thought to improve blood flow and circulation to hair follicles. Additionally, a 2019 review found that procyanidin — a type of flavonoid found in cinnamon — is associated with hair growth.\n\nBut wait, there’s more! Some anecdotal research suggests using cinnamon on the scalp can improve dandruff, thanks to its antifungal properties. But again, we need more research to prove the perks.",
+      "userName": "pedja90",
+      "date": "29/10/2023",
+      "category": "nature",
+      "id": 9
+    },
+    {
+      "img": "https://picsum.photos/1000/200?random=129",
+      "title": "World Title",
+      "body": "First off, cinnamon might help reduce blood sugar levels. Small studies also suggest cinnamon can reduce total plasma glucose and improve insulin sensitivity.\n\nAdditionally, cinnamon might help improve other diabetes-related symptoms. A 2015 review noted that 60 people with type 2 diabetes consumed up to 6 grams (g) of cinnamon a day for 40 days to 4 months. At the end of the study, the 60 participants had lower serum glucose, triglycerides, low-density lipoprotein cholesterol, and total cholesterol.\n\nKeep in mind that we need more studies on cinnamon tea on its own to show how it can improve diabetes symptoms.",
+      "userName": "pedja90",
+      "date": "29/10/2023",
+      "category": "world",
+      "id": 10
+    },
+    {
+      "img": "https://picsum.photos/1000/200?random=73",
+      "title": "Science Title",
+      "body": "Lots of peeps think cinnamon is a natural way to lose weight. But is this true? Well, maybe.\n\nSome research shows that cinnamon can aid fat loss in waist circumference. An older study found that participants lost 0.7 percent of their fat mass and gained 1.1 percent of muscle mass after taking 10 g (or 5 teaspoons) of cinnamon powder every day for three months.\n\nWhile this def sounds promising, more research is needed to show if lower doses of cinnamon — like the amounts found in cinnamon tea — can actually make a difference.",
+      "userName": "pedja90",
+      "date": "29/10/2023",
+      "category": "science",
+      "id": 11
     }
   ]
 }

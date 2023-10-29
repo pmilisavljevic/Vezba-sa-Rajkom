@@ -11,7 +11,7 @@ import { ContextProvider } from "./state/context";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import MyPosts from "./pages/MyPosts/MyPosts";
 import { PostPage } from "./pages/Post/PostPage";
-// import ProtectedRoute from "./state/ProtectedRoute";
+import ProtectedRoute from "./state/ProtectedRoute";
 
 function App() {
   return (
@@ -21,11 +21,32 @@ function App() {
           <Route path="RegisterPage" element={<Register2 />} />
           <Route path="LoginPage" element={<LoginPage />} />
 
-          <Route path="NewPost" element={<NewPost />} />
-          <Route path="EditProfile" element={<EditProfile />} />
-          <Route path="MyPosts" element={<MyPosts />} />
-          <Route path="/post/:id" element={<PostPage />} />
+          <Route
+            path="NewPost"
+            element={
+              <ProtectedRoute>
+                <NewPost />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="EditProfile"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="MyPosts"
+            element={
+              <ProtectedRoute>
+                <MyPosts />
+              </ProtectedRoute>
+            }
+          />
 
+          <Route path="/post/:id" element={<PostPage />} />
           <Route path="/" element={<Homepage />} />
         </Routes>
       </ContextProvider>
@@ -38,30 +59,23 @@ export default App;
 /* 
 ZA DALJE
 
-kada editujem profil i PUT-ujem, update-uje se u db-u, ali ne i u !localStorage-u! SETUJ U STATU I LOCALU
 
-staviti postove u STATE DONE
-napraviti stranicu gde moze da se vidi ceo blog post, useParams DONE
-dodati slike za postove DONE
-dodati generisani datum kada je submitovan post  DONE
-dodati random sliku svakom korisniku DONE
-
-infinite scroll in reactu
-PAGINATION?
+PAGINATION DONE
 
 bem
-@media responsiveness
+@media responsiveness IZGLEDA KATASTROFALNO
 
 BACKLOG
-- vratiti protectedRoutes
+- vratiti protectedRoutes DONE
 - staviti loader-e gde se ceka api
-- srediti TS gde fali
+- srediti TS gde fali (PostMui)
 - staviti MainLayout oko celog projekta(tako lakse?)
+- toastify
 
 
 
 FUTURE 
 - dodati Edit post
 - search za postove po title-u
-- napraviti kategorije postova i filtere za prikazivanje MOZE
+- napraviti kategorije postova i filtere za prikazivanje MOZE DONE
 */

@@ -1,53 +1,100 @@
-import { useEffect } from "react";
-
 import { useAppContext } from "../../../hooks/useAppContext";
-import { fetchPosts } from "../../../services/client";
 
 import PostMui from "../../../components/PostMui";
 
+import { useGetPosts } from "../../../hooks/useGetPosts";
+import CategoriesFilter from "./CategoriesFilter";
+import { useState } from "react";
+import { Category } from "../../../helpers/constantsAndEnums";
+
+const categories = [
+  { name: "ALL", id: 1 },
+  { name: "general", id: 2 },
+  { name: "science", id: 3 },
+  { name: "world", id: 4 },
+  { name: "music", id: 5 },
+  { name: "nature", id: 6 },
+  { name: "IT", id: 7 },
+  { name: "history", id: 8 },
+];
+
 function AllPosts() {
-  const { dispatch } = useAppContext();
-
-  const displayPosts = (posts) => {
-    // OVDE ME JEBE ONO SA TIPOM AKCIJE IZ CONTEXTA
-    dispatch({ type: "GET_ALL_POSTS", payload: posts });
-  };
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await fetchPosts();
-        const posts = response.data;
-        displayPosts(posts);
-        // console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getPosts();
-  }, []);
-  // JESAM LI OVDE NESTO POGRESNO URADIO?
-
+  useGetPosts();
+  const { loading } = useGetPosts();
   const {
     state: {
       postsSlice: { posts },
     },
   } = useAppContext();
-  // console.log(posts);
 
+  // Pagination settings
+  const postsPerPage = 5; // Number of posts to display per page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [clickedCategory, setClickedCategory] = useState<Category>({
+    name: "ALL",
+    id: 1,
+  });
+
+  const handleButtonClick = (category: Category) => {
+    setClickedCategory(category);
+    setCurrentPage(1);
+  };
+
+  // Function to change the current page
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+  const filteredPosts =
+    clickedCategory.name === "ALL"
+      ? posts
+      : posts.filter((post) => post.category === clickedCategory.name);
+
+  // Calculate the index range for the current page
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   return (
-    <div className="all-posts">
-      {posts.map((post) => (
-        <PostMui
-          id={post.id}
-          key={post.id}
-          img={post.img}
-          title={post.title}
-          userName={post.userName}
-          body={post.body}
-          date={post.date}
-        />
-      ))}
-    </div>
+    <>
+      <CategoriesFilter
+        clickedCategory={clickedCategory}
+        categories={categories}
+        handleButtonClick={handleButtonClick}
+      />
+      {loading ? (
+        <div>Loading....</div>
+      ) : (
+        <div className="all-posts">
+          {currentPosts.map((post) => (
+            <PostMui
+              id={post.id}
+              key={post.id}
+              img={post.img}
+              title={post.title}
+              userName={post.userName}
+              body={post.body}
+              date={post.date}
+              category={post.category}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Pagination controls */}
+      <div className="pagination">
+        {Array.from({
+          length: Math.ceil(filteredPosts.length / postsPerPage),
+        }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => paginate(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </>
   );
 }
 

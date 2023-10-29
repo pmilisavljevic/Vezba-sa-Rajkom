@@ -21,6 +21,7 @@ export type PostType = {
   userName: string;
   date: string;
   id: number;
+  category: string;
 };
 type PostsSliceType = {
   posts: PostType[];
@@ -34,8 +35,8 @@ type InitialStateType = {
 const initialState: InitialStateType = {
   userSlice: {
     user: localStorage.getItem(LocalStorageKeys.user)
-        ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
-        : null,
+      ? (JSON.parse(localStorage.getItem(LocalStorageKeys.user) || "") as User)
+      : null,
   },
   postsSlice: {
     posts: [],
@@ -47,7 +48,7 @@ type UserActionType = {
 };
 type PostsActionType = {
   type: string;
-  payload: PostType[] ;
+  payload: PostType[];
 };
 
 type GeneralActionType = UserActionType | PostsActionType;
@@ -65,7 +66,7 @@ const userReducer = (state: UserSliceType, action: UserActionType) => {
         ...state,
         user: null,
       }; // Clear the user when logged out
-      //
+    //
     default:
       return state;
   }
@@ -87,7 +88,7 @@ const postsReducer = (state: PostsSliceType, action: PostsActionType) => {
 // Create context
 const AppContext = createContext<{
   state: InitialStateType;
-  dispatch: React.Dispatch<UserActionType|PostsActionType>   ; // Specify the action type
+  dispatch: React.Dispatch<UserActionType | PostsActionType>; // Specify the action type
   userActions: typeof userActions;
 }>({
   state: initialState,
@@ -95,7 +96,10 @@ const AppContext = createContext<{
   userActions,
 });
 
-const mainReducer = (state: InitialStateType, action: GeneralActionType): InitialStateType => {
+const mainReducer = (
+  state: InitialStateType,
+  action: GeneralActionType
+): InitialStateType => {
   //READ
   //here we user two helper functions to checks for what kind of an action we are dispatching
   // does that application fall in the user action types or post action types
@@ -133,9 +137,9 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
   // console.log(state.userSlice.user);
 
   return (
-      <AppContext.Provider value={{ state, dispatch, userActions }}>
-        {children}
-      </AppContext.Provider>
+    <AppContext.Provider value={{ state, dispatch, userActions }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 

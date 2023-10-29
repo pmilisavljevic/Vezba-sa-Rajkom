@@ -5,8 +5,13 @@ body {
 .main {
   height: 80vh;
 }
+
+//Pages imports
 @import "/src/styles/Old.css";
 @import "/src/layouts/MainLayout/MainLayout.scss";
-@import "/src/pages/Homepage/Homepage.scss"; //Pages imports
+@import "/src/pages/Homepage/Homepage.scss";
 
 //Components imports
+@import "/src/pages/Homepage/components/CategoriesFilter.scss";
+@import "/src/components/PostMui.scss";
+@import "/src/pages/Homepage/components/AllPosts.scss";
