@@ -1,15 +1,17 @@
-// import MainLayout from "../components/layouts/MainLayout";
-import Button from "../../components/inputs/Button";
-import { Box, Container, TextField, Typography } from "@mui/material";
-import MuiTextInput from "../../components/inputs/MuiTextInput";
-import { useAppContext } from "../../hooks/useAppContext";
-import { useState } from "react";
-import { createNewPost } from "../../services/client";
-import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useNavigate } from "react-router-dom";
-import { getFormattedDate } from "../../utils/dataFormat";
+import { useState } from "react";
+
+import Button from "../../components/inputs/MuiButton";
+import MuiTextInput from "../../components/inputs/MuiTextInput";
 import CategorySelector from "./CategorySelector";
+
+import { useAppContext } from "../../hooks/useAppContext";
+import { createNewPost } from "../../services/client";
+import { getFormattedDate } from "../../utils/dataFormat";
+
+import { Box, Container, TextField, Typography } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
+import { toast } from "react-toastify";
 
 function NewPost() {
   const {
@@ -49,21 +51,23 @@ function NewPost() {
   const newPostFunction = async () => {
     try {
       await createNewPost(newPost);
+      toast.success("Creating new successful");
     } catch (err) {
+      toast.error("There was some error");
       console.log(err);
     }
   };
 
-  const handleSubmit = (
+  function handleSubmit(
     e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>
-  ) => {
+  ) {
     e.preventDefault();
     newPostFunction();
     navigate("/MyPosts");
-  };
+  }
 
   return (
-    <MainLayout>
+    <>
       <Container component="main">
         {/* {Error && <h3>{}</h3>} */}
         <Box
@@ -111,7 +115,7 @@ function NewPost() {
           </Box>
         </Box>
       </Container>
-    </MainLayout>
+    </>
   );
 }
 

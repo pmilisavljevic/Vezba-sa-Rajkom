@@ -14,7 +14,7 @@ type Props = {
 //   onClick: () => null;
 // }
 
-const MuiButton = ({ size, children, onClick = () => null }: Props) => {
+function MuiButton({ size, children, onClick = () => null }: Props) {
   return (
     <Button
       sx={{
@@ -32,6 +32,6 @@ const MuiButton = ({ size, children, onClick = () => null }: Props) => {
       {children}
     </Button>
   );
-};
+}
 
 export default MuiButton;

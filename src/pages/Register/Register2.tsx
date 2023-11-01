@@ -1,9 +1,11 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+import { registerUser } from "../../services/client";
+
 import { useFormik } from "formik";
 import * as yup from "yup";
-import MainLayout from "../../layouts/MainLayout/MainLayout";
-import { registerUser } from "../../services/client";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
 const validationSchema = yup.object({
   userName: yup.string().required("Username is required"),
@@ -36,7 +38,9 @@ function Formik() {
       const registerUserFunction = async () => {
         try {
           await registerUser(values);
+          toast.success("Registration successful");
         } catch (err) {
+          toast.error("There was some problem with registering");
           console.log(err);
         }
       };
@@ -46,7 +50,7 @@ function Formik() {
   });
 
   return (
-    <MainLayout>
+    <>
       <div>
         <Container component="main" maxWidth="lg">
           <Box
@@ -157,7 +161,7 @@ function Formik() {
           </Box>
         </Container>
       </div>
-    </MainLayout>
+    </>
   );
 }
 

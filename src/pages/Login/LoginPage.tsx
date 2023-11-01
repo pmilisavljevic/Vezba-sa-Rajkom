@@ -1,13 +1,15 @@
-import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useState } from "react";
-import Button from "../../components/inputs/Button";
-import { AxiosError } from "axios";
-import { fetchUsers } from "../../services/client";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../../components/inputs/MuiButton";
 import MuiTextInput from "../../components/inputs/MuiTextInput";
-import { Container, Box, Typography } from "@mui/material";
+
+import { fetchUsers } from "../../services/client";
 import { LocalStorageKeys } from "../../helpers/constantsAndEnums";
 import { useAppContext } from "../../hooks/useAppContext";
-import { useNavigate } from "react-router-dom";
+
+import { Container, Box, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
 type User = {
   email: string;
@@ -19,10 +21,8 @@ type User = {
   id: number;
 };
 
-const LoginPage = () => {
+function LoginPage() {
   const { dispatch, userActions } = useAppContext();
-  // const { userSlice } = state;
-  // console.log(userSlice.user);
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -63,11 +63,13 @@ const LoginPage = () => {
       if (user) {
         setMyUser(user);
         navigate("/");
+        toast.success("Login successful");
       } else {
-        alert("User not found");
+        toast.success("Login successful");
       }
     } catch (err) {
-      console.error(AxiosError);
+      console.error(err);
+      toast.error("An error occurred");
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +81,7 @@ const LoginPage = () => {
   };
 
   return (
-    <MainLayout>
+    <>
       <div>{isLoading && <h2>Loading...</h2>}</div>
       <Container component="main" maxWidth="xs">
         {/* {Error && <h3>{}</h3>} */}
@@ -121,10 +123,8 @@ const LoginPage = () => {
           </Box>
         </Box>
       </Container>
-    </MainLayout>
+    </>
   );
-};
+}
 
 export default LoginPage;
-
-// prebaciti find users u posebnu komponentu(hekpers0)

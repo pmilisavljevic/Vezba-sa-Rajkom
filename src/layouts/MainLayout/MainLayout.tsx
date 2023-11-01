@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 type Props = PropsWithChildren;
 
-const MainLayout = ({ children }: Props) => {
+function MainLayout({ children }: Props) {
   return (
     <div className="main_layout">
       <PageNav />
@@ -12,6 +12,6 @@ const MainLayout = ({ children }: Props) => {
       <Footer />
     </div>
   );
-};
+}
 
 export default MainLayout;

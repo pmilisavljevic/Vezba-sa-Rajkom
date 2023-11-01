@@ -6,11 +6,16 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 type Props = {
+  disabled?: false | true;
   category: string;
-  onChange: (e: SelectChangeEvent<string>) => void;
+  onChange?: (e: SelectChangeEvent<string>) => void;
 } & PropsWithChildren;
 
-export default function CategorySelector({ category, onChange }: Props) {
+export default function CategorySelector({
+  category,
+  onChange,
+  disabled = false,
+}: Props) {
   //   const [category, setCategory] = useState("");
   //   console.log(category);
 
@@ -28,6 +33,7 @@ export default function CategorySelector({ category, onChange }: Props) {
           label="Category"
           name="category"
           onChange={onChange}
+          disabled={disabled}
         >
           <MenuItem value={"science"}>#science</MenuItem>
           <MenuItem value={"world"}>#world</MenuItem>

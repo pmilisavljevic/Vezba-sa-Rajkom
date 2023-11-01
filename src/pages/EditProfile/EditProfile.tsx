@@ -1,35 +1,30 @@
-import MainLayout from "../../layouts/MainLayout/MainLayout";
 import { useState } from "react";
-// import { registerUser } from "../../services/client";
 import { useNavigate } from "react-router-dom";
-import MuiButton from "../../components/inputs/Button";
+
+import MuiButton from "../../components/inputs/MuiButton";
 import MuiTextInput from "../../components/inputs/MuiTextInput";
-import axios, { AxiosError } from "axios";
-// import { useAppContext } from "../../hooks/useAppContext";
-import { Container, Box, Typography } from "@mui/material";
+
 import { LocalStorageKeys } from "../../helpers/constantsAndEnums";
 
-function EditProfile() {
-  // const {
-  //   state: {
-  //     userSlice: { user },
-  //   },
-  // } = useAppContext();
+import { Container, Box, Typography } from "@mui/material";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
+function EditProfile() {
   const localUser = JSON.parse(
     localStorage.getItem(LocalStorageKeys.user) || ""
   );
   // console.log(localUser);
 
   type UpdateProfilePayload = {
-    userName: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    id: string,
-    password?:string
-  }
-  const [password, setPassword] = useState("")
+    userName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    id: string;
+    password?: string;
+  };
+  const [password, setPassword] = useState("");
   const [profileUpdate, setProfileUpdate] = useState<UpdateProfilePayload>({
     userName: localUser?.userName || "",
     firstName: localUser?.firstName || "",
@@ -38,21 +33,19 @@ function EditProfile() {
     id: localUser?.id,
   });
 
-  
-
-
   // console.log(profileUpdate);
   const profileUpdateFunction = async () => {
     try {
-      const payload = {...profileUpdate}
-      if(password){
-        payload.password = password
+      const payload = { ...profileUpdate };
+      if (password) {
+        payload.password = password;
       }
 
       await axios.patch(
         `http://localhost:3000/users/${localUser?.id}`,
         payload
       );
+      toast.success("Edit successful");
     } catch (err) {
       console.log(AxiosError);
     }
@@ -81,70 +74,68 @@ function EditProfile() {
   };
 
   return (
-    <MainLayout>
-      <div>
-        <Container component="main" maxWidth="xs">
+    <div>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            mt: 4,
+            mb: 3,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Profile
+          </Typography>
           <Box
+            component="form"
+            onSubmit={handleSubmit}
             sx={{
-              mt: 4,
-              mb: 3,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              mt: 1,
+              // mb: 2,
+              gap: 1,
             }}
           >
-            <Typography component="h1" variant="h5">
-              Profile
-            </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{
-                mt: 1,
-                // mb: 2,
-                gap: 1,
-              }}
-            >
-              <MuiTextInput
-                label="User Name"
-                value={profileUpdate.userName}
-                name="userName"
-                onChange={handleOnChange}
-              />
-              <MuiTextInput
-                label="First Name"
-                value={profileUpdate.firstName}
-                name="firstName"
-                onChange={handleOnChange}
-              />
-              <MuiTextInput
-                label="Last Name"
-                value={profileUpdate.lastName}
-                name="lastName"
-                onChange={handleOnChange}
-              />
+            <MuiTextInput
+              label="User Name"
+              value={profileUpdate.userName}
+              name="userName"
+              onChange={handleOnChange}
+            />
+            <MuiTextInput
+              label="First Name"
+              value={profileUpdate.firstName}
+              name="firstName"
+              onChange={handleOnChange}
+            />
+            <MuiTextInput
+              label="Last Name"
+              value={profileUpdate.lastName}
+              name="lastName"
+              onChange={handleOnChange}
+            />
 
-              <MuiTextInput
-                label="Email"
-                value={profileUpdate.email}
-                name="email"
-                onChange={handleOnChange}
-                type="email"
-              />
-                <MuiTextInput
-                label="Pasword"
-                value={password}
-                name="password"
-                onChange={(e)=>setPassword(e.target.value)}
-                type="password"
-                required={false}
-              />
-              <MuiButton size="large">SUBMIT</MuiButton>
-            </Box>
+            <MuiTextInput
+              label="Email"
+              value={profileUpdate.email}
+              name="email"
+              onChange={handleOnChange}
+              type="email"
+            />
+            <MuiTextInput
+              label="Pasword"
+              value={password}
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              required={false}
+            />
+            <MuiButton size="large">SUBMIT</MuiButton>
           </Box>
-        </Container>
-      </div>
-    </MainLayout>
+        </Box>
+      </Container>
+    </div>
   );
 }
 

@@ -1,20 +1,20 @@
 import React from "react";
 type Props = {
-  value: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  type?: "text" | "password" | "email"
-  htmlFor?: string
-  placeholder: string
-  name:string
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: "text" | "password" | "email";
+  htmlFor?: string;
+  placeholder: string;
+  name: string;
 };
 
-const TextInput = ({
+function TextInput({
   value,
   onChange = () => null,
   type = "text",
   placeholder = "",
-  name=""
-}: Props) => {
+  name = "",
+}: Props) {
   return (
     <>
       {/* <label htmlFor={htmlFor}></label> */}
@@ -27,6 +27,6 @@ const TextInput = ({
       />
     </>
   );
-};
+}
 
 export default TextInput;

@@ -7,15 +7,7 @@ import { PostType } from "../state/context";
 import { Link } from "react-router-dom";
 import { catColors } from "../helpers/constantsAndEnums";
 
-export default function PostMui({
-  img,
-  title,
-  body,
-  userName,
-  date,
-  id,
-  category,
-}: PostType) {
+function PostMui({ img, title, body, userName, date, id, category }: PostType) {
   return (
     <Card sx={{}}>
       <CardActionArea component={Link} to={`/post/${id}`}>
@@ -50,3 +42,5 @@ export default function PostMui({
     </Card>
   );
 }
+
+export default PostMui;

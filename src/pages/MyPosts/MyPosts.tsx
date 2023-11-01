@@ -1,6 +1,5 @@
-import MainLayout from "../../layouts/MainLayout/MainLayout";
-
 import PostMui from "../../components/PostMui";
+
 import { useGetPosts } from "../../hooks/useGetPosts";
 import { useAppContext } from "../../hooks/useAppContext";
 
@@ -10,7 +9,7 @@ function MyPosts() {
   const { state } = useAppContext();
 
   return (
-    <MainLayout>
+    <>
       {loading ? (
         // Display a loading indicator
         <div>Loading...</div>
@@ -28,11 +27,12 @@ function MyPosts() {
                 userName={post.userName}
                 body={post.body}
                 date={post.date}
+                category={post.category}
               />
             ))}
         </div>
       )}
-    </MainLayout>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ export function useGetPosts() {
   const { dispatch } = useAppContext();
   const [loading, setLoading] = useState(true);
 
-  const displayPosts = (posts: PostType[]) => {
+  const fetchAllPosts = (posts: PostType[]) => {
     dispatch({ type: "GET_ALL_POSTS", payload: posts });
   };
   useEffect(() => {
@@ -15,7 +15,8 @@ export function useGetPosts() {
       try {
         const response = await fetchPosts();
         const posts = response.data;
-        displayPosts(posts);
+
+        fetchAllPosts(posts);
       } catch (error) {
         console.log(error);
       } finally {

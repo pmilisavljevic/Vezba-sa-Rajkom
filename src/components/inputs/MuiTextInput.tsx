@@ -4,20 +4,20 @@ type Props = {
   name?: string;
   label: string;
   value: string;
-  required?:boolean
+  required?: boolean;
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   type?: "text" | "password" | "email";
 };
 
-export default function MuiTextInput({
+function MuiTextInput({
   name = "",
   label,
   onChange = () => null,
   type = "text",
   value,
-  required=true
+  required = true,
 }: Props) {
   return (
     <TextField
@@ -33,3 +33,5 @@ export default function MuiTextInput({
     />
   );
 }
+
+export default MuiTextInput;

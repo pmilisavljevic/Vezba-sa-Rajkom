@@ -31,7 +31,7 @@ export type Post = {
   category?: string;
 };
 
-export const catColors = {
+export const catColors: CatColors = {
   general: "#5fad56ff",
   history: "#f2c14eff",
   IT: "#f78154ff",
@@ -39,6 +39,17 @@ export const catColors = {
   music: "#b4436cff",
   world: "#de9151ff",
   science: "#aef78eff",
+};
+
+type CatColors = {
+  [key: string]: string;
+  general: string;
+  history: string;
+  IT: string;
+  nature: string;
+  music: string;
+  world: string;
+  science: string;
 };
 
 export type Category = {

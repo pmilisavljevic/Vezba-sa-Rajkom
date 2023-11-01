@@ -1,11 +1,12 @@
-import { useAppContext } from "../../../hooks/useAppContext";
+import { useState } from "react";
 
 import PostMui from "../../../components/PostMui";
-
 import { useGetPosts } from "../../../hooks/useGetPosts";
 import CategoriesFilter from "./CategoriesFilter";
-import { useState } from "react";
 import { Category } from "../../../helpers/constantsAndEnums";
+
+import { useAppContext } from "../../../hooks/useAppContext";
+import { useSearchValue } from "../../../state/SearchContext";
 
 const categories = [
   { name: "ALL", id: 1 },
@@ -19,16 +20,17 @@ const categories = [
 ];
 
 function AllPosts() {
-  useGetPosts();
+  // Custom hooks
   const { loading } = useGetPosts();
   const {
     state: {
       postsSlice: { posts },
     },
   } = useAppContext();
+  const { searchValue } = useSearchValue();
 
   // Pagination settings
-  const postsPerPage = 5; // Number of posts to display per page
+  const postsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
   const [clickedCategory, setClickedCategory] = useState<Category>({
@@ -36,24 +38,30 @@ function AllPosts() {
     id: 1,
   });
 
-  const handleButtonClick = (category: Category) => {
+  function handleButtonClick(category: Category) {
     setClickedCategory(category);
     setCurrentPage(1);
-  };
+  }
 
-  // Function to change the current page
-  const paginate = (pageNumber: number) => {
+  // console.log(searchValue);
+
+  // Change the current page
+  function paginate(pageNumber: number) {
     setCurrentPage(pageNumber);
-  };
+  }
   const filteredPosts =
     clickedCategory.name === "ALL"
       ? posts
       : posts.filter((post) => post.category === clickedCategory.name);
 
-  // Calculate the index range for the current page
+  const searchedPosts = filteredPosts.filter((post) =>
+    post.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  // Index range for the current page
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = searchedPosts.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <>
       <CategoriesFilter
@@ -80,7 +88,6 @@ function AllPosts() {
         </div>
       )}
 
-      {/* Pagination controls */}
       <div className="pagination">
         {Array.from({
           length: Math.ceil(filteredPosts.length / postsPerPage),
